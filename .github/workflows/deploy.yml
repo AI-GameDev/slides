@@ -11,11 +11,11 @@ jobs:
       matrix:
         presentation: [comfyui, infinitetalk]  # 새 프레젠테이션 추가 시 여기에 추가
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
       - uses: pnpm/action-setup@v4
         with:
           version: 10
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@v5
         with:
           node-version: 'lts/*'
           cache: 'pnpm'
@@ -42,7 +42,7 @@ jobs:
             -exec perl -pi -e 's|(?<!/slides/${{ matrix.presentation }})/images/|/slides/${{ matrix.presentation }}/images/|g' {} \;
           # Copy index.html to 404.html for SPA routing
           cp dist/${{ matrix.presentation }}/index.html dist/${{ matrix.presentation }}/404.html
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v5
         with:
           name: dist-${{ matrix.presentation }}
           path: dist/${{ matrix.presentation }}
@@ -58,7 +58,7 @@ jobs:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
-      - uses: actions/download-artifact@v4
+      - uses: actions/download-artifact@v5
         with:
           pattern: dist-*
           path: dist
@@ -105,10 +105,10 @@ jobs:
           </body>
           </html>
           EOF
-      - uses: actions/configure-pages@v4
-      - uses: actions/upload-pages-artifact@v3
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v4
         with:
           path: dist
       - name: Deploy
         id: deployment
-        uses: actions/deploy-pages@v4
+        uses: actions/deploy-pages@v5

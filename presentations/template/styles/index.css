@@ -1,0 +1,5 @@
+@import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard-dynamic-subset.min.css');
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Pretendard', ui-sans-serif, system-ui, sans-serif !important;
+}

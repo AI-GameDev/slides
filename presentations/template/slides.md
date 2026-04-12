@@ -11,6 +11,10 @@ transition: slide-left
 mdc: true
 aspectRatio: '16/9'
 canvasWidth: 980
+fonts:
+  sans: 'Pretendard'
+  mono: 'JetBrains Mono'
+  local: 'Pretendard'
 layout: intro
 ---
 

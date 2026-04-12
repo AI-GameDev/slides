@@ -1,12 +1,18 @@
 ---
-theme: mokkapps
+theme: penguin
 routerMode: 'hash'
 title: Replit Streamlit Template
 transition: slide-left
 mdc: true
 aspectRatio: '16/9'
 canvasWidth: 980
-layout: cover
+fonts:
+  sans: 'Pretendard'
+  mono: 'JetBrains Mono'
+  local: 'Pretendard'
+addons:
+  - excalidraw
+layout: intro
 ---
 
 # Replit Streamlit Template
@@ -14,7 +20,7 @@ layout: cover
 Replit에서 Streamlit 프로젝트를 생성하고 실행하는 방법
 
 ---
-layout: section
+layout: new-section
 ---
 
 # Streamlit이란?
@@ -35,7 +41,7 @@ Python으로 데이터 앱을 빠르게 만들 수 있는 오픈소스 프레임
 </v-clicks>
 
 ---
-layout: section
+layout: new-section
 ---
 
 # Streamlit 프로젝트 생성
@@ -106,7 +112,7 @@ layout: section
 </div>
 
 ---
-layout: section
+layout: new-section
 ---
 
 # Files 탭 활성화
@@ -133,7 +139,15 @@ layout: section
 </div>
 
 ---
-layout: outro
+
+# Excalidraw 다이어그램
+
+<div class="flex justify-center">
+  <Excalidraw drawFilePath="/tool-architecture.excalidraw" :darkMode="false" class="w-3/5" />
+</div>
+
+---
+layout: intro
 ---
 
 # 감사합니다

@@ -7,6 +7,7 @@ aspectRatio: '16/9'
 canvasWidth: 980
 themeConfig:
   variant: soft
+  accent: '#0f766e'
 layout: cover
 kicker: 아이유노글로벌 · CEO 교육 3 / 5
 title: 서브에이전트

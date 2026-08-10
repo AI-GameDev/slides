@@ -9,7 +9,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        presentation: [comfyui, infinitetalk, replit-streamlit, ceo-dev-basics, ceo-agent-skills]  # 새 프레젠테이션 추가 시 여기에 추가
+        presentation: [comfyui, infinitetalk, replit-streamlit, ceo-dev-basics, ceo-agent-skills, ceo-agent-subagent]  # 새 프레젠테이션 추가 시 여기에 추가
     steps:
       - uses: actions/checkout@v5
       - uses: pnpm/action-setup@v4

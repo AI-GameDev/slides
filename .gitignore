@@ -5,3 +5,6 @@ dist
 .vite-inspect
 .remote-assets
 components.d.ts
+
+# 폰트 원본 아카이브 (대용량, template에 woff2 커밋됨)
+res/

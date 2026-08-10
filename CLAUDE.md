@@ -56,6 +56,16 @@ pnpm export
 
 ## 필수 설정 사항
 
+### 기본 슬라이드 스타일 (명시적 요청이 없으면 항상 적용)
+문서를 슬라이드로 변환할 때 사용자가 다른 테마/스타일을 명시하지 않았다면 반드시 아래 조합을 사용합니다:
+
+- **테마**: `slidev-theme-tahta` + `themeConfig.variant: soft`
+- **폰트**: Pretendard 셀프호스팅 — `PretendardVariable.woff2`를 `presentations/<이름>/public/fonts/`에 두고 `styles/index.css`에서 `@font-face` + `:root[data-variant]`의 `--font-body`/`--font-display` 오버라이드 (CDN 사용 금지). 기준 구현과 폰트 파일은 `presentations/template/`에 커밋되어 있음 — 새 프레젠테이션은 template 복사로 충분 (원본 zip은 `res/`에 로컬 보관, git 미추적)
+- **작성 규칙**: tahta는 frontmatter 기반 테마 — 레이아웃 선택과 필드 작성법은 `node_modules/slidev-theme-tahta/AGENTS.md`를 따를 것 (CSS/HTML 레이아웃 직접 작성 금지, 내용 형태에 맞는 레이아웃 선택: 비교→`vs`, 용어→`define`/`reference`, 숫자→`stats`, 과정→`steps` 등)
+- **검증**: 작성 후 `npx tahta-lint presentations/<이름>/slides.md` 실행
+
+`pnpm new <이름>`으로 생성하면 이 스타일이 적용된 템플릿이 복사됩니다.
+
 ### routerMode: 'hash' (필수)
 모든 프레젠테이션의 frontmatter에 `routerMode: 'hash'`를 반드시 포함해야 합니다 (GitHub Pages용):
 ```yaml
@@ -70,19 +80,24 @@ routerMode: 'hash'
 - 절대 경로로 참조: `/images/파일명.png`
 - GitHub Actions가 하위 디렉토리 배포를 위한 경로를 자동 변환
 
-### Frontmatter 템플릿
+### Frontmatter 템플릿 (기본 스타일)
 ```yaml
 ---
-theme: light-icons
+theme: slidev-theme-tahta
 routerMode: 'hash'
-title: 프레젠테이션 제목
-transition: slide-left
 mdc: true
 aspectRatio: '16/9'
 canvasWidth: 980
-layout: intro
+themeConfig:
+  variant: soft
+layout: cover
+kicker: 소제목
+title: 프레젠테이션 제목
+subtitle: 부제목 또는 발표자
 ---
 ```
+- 첫 블록은 덱 헤더 + 표지 슬라이드를 겸한다 — `title`을 중복 정의하지 말 것
+- 다른 테마(light-icons 등)는 사용자가 명시적으로 요청할 때만 사용
 
 ## GitHub Pages 배포
 

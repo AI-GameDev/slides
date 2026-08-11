@@ -13,6 +13,15 @@
   --font-body: 'Pretendard Variable', system-ui, sans-serif;
 }
 
+/* 한국어 줄바꿈 — 브라우저 기본값은 한글을 CJK로 보고 음절 사이 아무 데서나
+   줄을 바꾼다 ("어떤 서비 / 스와도"처럼 단어가 쪼개진다).
+   keep-all 로 띄어쓰기 단위에서만 끊고, 띄어쓰기 없는 아주 긴 문자열(URL 등)은
+   overflow-wrap 으로 흘려보내 넘침을 막는다. 두 속성 모두 상속된다. */
+.slidev-layout {
+  word-break: keep-all;
+  overflow-wrap: break-word;
+}
+
 /* diagram 레이아웃에 <Figure> 이미지를 올릴 때의 높이 제한.
    테마는 .diagram-stage .mermaid 에만 max-height: 60vh 를 걸어두어
    래스터 이미지는 제한이 없다 → 세로로 넘쳐 제목(.l-head)을 밀어낸다.

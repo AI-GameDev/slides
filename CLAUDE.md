@@ -60,6 +60,7 @@ pnpm export
 문서를 슬라이드로 변환할 때 사용자가 다른 테마/스타일을 명시하지 않았다면 반드시 아래 조합을 사용합니다:
 
 - **테마**: `slidev-theme-tahta` + `themeConfig.variant: soft`
+- **포인트 색**: `themeConfig.accent`를 **임의로 지정하지 않는다** — `soft` 기본값(주황 계열)을 그대로 쓴다. 사용자가 명시적으로 요청할 때만 변경. 삽입할 이미지·다이어그램의 색이 기본 accent와 어긋나 보이더라도 **덱 색을 바꾸지 말고 그대로 두고 사용자에게 알릴 것** (이미지 쪽을 주황 계열로 맞추는 것이 원칙)
 - **폰트**: Pretendard 셀프호스팅 — `PretendardVariable.woff2`를 `presentations/<이름>/public/fonts/`에 두고 `styles/index.css`에서 `@font-face` + `:root[data-variant]`의 `--font-body`/`--font-display` 오버라이드 (CDN 사용 금지). 기준 구현과 폰트 파일은 `presentations/template/`에 커밋되어 있음 — 새 프레젠테이션은 template 복사로 충분 (원본 zip은 `res/`에 로컬 보관, git 미추적)
 - **작성 규칙**: tahta는 frontmatter 기반 테마 — 레이아웃 선택과 필드 작성법은 `node_modules/slidev-theme-tahta/AGENTS.md`를 따를 것 (CSS/HTML 레이아웃 직접 작성 금지, 내용 형태에 맞는 레이아웃 선택: 비교→`vs`, 용어→`define`/`reference`, 숫자→`stats`, 과정→`steps` 등)
 - **검증**: 작성 후 `npx tahta-lint presentations/<이름>/slides.md` 실행

@@ -63,9 +63,10 @@ pnpm export
 - **포인트 색**: `themeConfig.accent`를 **임의로 지정하지 않는다** — `soft` 기본값(주황 계열)을 그대로 쓴다. 사용자가 명시적으로 요청할 때만 변경. 삽입할 이미지·다이어그램의 색이 기본 accent와 어긋나 보이더라도 **덱 색을 바꾸지 말고 그대로 두고 사용자에게 알릴 것** (이미지 쪽을 주황 계열로 맞추는 것이 원칙)
 - **폰트**: Pretendard 셀프호스팅 — `PretendardVariable.woff2`를 `presentations/<이름>/public/fonts/`에 두고 `styles/index.css`에서 `@font-face` + `:root[data-variant]`의 `--font-body`/`--font-display` 오버라이드 (CDN 사용 금지). 기준 구현과 폰트 파일은 `presentations/template/`에 커밋되어 있음 — 새 프레젠테이션은 template 복사로 충분 (원본 zip은 `res/`에 로컬 보관, git 미추적)
 - **작성 규칙**: tahta는 frontmatter 기반 테마 — 레이아웃 선택과 필드 작성법은 `node_modules/slidev-theme-tahta/AGENTS.md`를 따를 것 (CSS/HTML 레이아웃 직접 작성 금지, 내용 형태에 맞는 레이아웃 선택: 비교→`vs`, 용어→`define`/`reference`, 숫자→`stats`, 과정→`steps` 등)
+- **테마 보정 CSS**: `styles/index.css` 아래쪽 "tahta 테마 보정" 블록은 **덱 내용과 무관한 테마 쪽 버그 우회**다. 원본은 `presentations/template/styles/index.css`이며 tahta를 쓰는 모든 덱에 동일하게 들어가야 한다. **덱마다 새로 만들지 말고 template에서 복사할 것** — 과거에 같은 버그를 서로 다른 덱에서 두 번 따로 고친 전례가 있다. 현재 3건: ① 한글이 음절 단위로 쪼개지는 줄바꿈(`word-break: keep-all`) ② `diagram` 캡션이 왼쪽에 붙는 정렬(`align-self: center`) ③ `diagram`에 올린 `<Figure>`가 세로로 넘쳐 제목을 밀어내는 문제
 - **검증**: 작성 후 `npx tahta-lint presentations/<이름>/slides.md` 실행
 
-`pnpm new <이름>`으로 생성하면 이 스타일이 적용된 템플릿이 복사됩니다.
+`pnpm new <이름>`으로 생성하면 이 스타일이 적용된 템플릿이 복사됩니다. 단 **`pnpm new`는 생성 시점에 한 번만 복사**하므로, template의 보정 CSS를 고치면 기존 덱에는 자동 반영되지 않는다 — 각 덱에 직접 옮겨야 한다.
 
 ### routerMode: 'hash' (필수)
 모든 프레젠테이션의 frontmatter에 `routerMode: 'hash'`를 반드시 포함해야 합니다 (GitHub Pages용):

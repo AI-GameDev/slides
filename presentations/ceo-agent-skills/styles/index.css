@@ -60,6 +60,9 @@
   align-items: center;
   min-height: 0;
   max-height: 100%;
+  /* 위아래 숨통. 이미지가 스테이지를 꽉 채우면 제목 바로 밑에 붙어버린다
+     (스테이지는 flex:1 이라 제목과 캡션 사이를 전부 차지한다). */
+  padding: var(--sp-4) 0;
 }
 .diagram-stage .tahta-figure img {
   width: auto;
@@ -67,4 +70,31 @@
   min-height: 0;
   max-height: 100%;
   object-fit: contain;
+}
+
+/* 4) default 계열에서 <Figure> 가 본문 전체 폭을 차지하는 경우.
+   구조가 .l-body > .fit > .fit-inner > figure 라 figure 는 .fit-inner 의
+   직계 자식이다. two-cols 는 .fit-inner > .two-cols > .col > figure 로
+   한 단계 더 들어가므로 이 선택자에 걸리지 않는다 (거긴 이미 여백이 정상).
+
+   테마의 <Figure> img 는 width:100% 뿐이라 높이 상한이 없다. 원래는 <Fit>
+   이 넘치는 내용을 축소해 주지만, 이미지는 비동기로 늦게 로드돼 Fit 의 측정
+   시점을 놓치는 경우가 있다 (실제로 어떤 슬라이드는 창을 리사이즈해야 뒤늦게
+   축소되고, 어떤 슬라이드는 끝내 축소되지 않아 이미지가 제목을 덮었다).
+   그래서 Fit 에 기대지 않고 이미지에 직접 상한을 건다.
+   본문 영역(.fit)은 canvasWidth 980 기준 약 369px 이다. 여기에 위아래 여백
+   32px 과 <Figure> 캡션(있을 때 약 30px)까지 들어가야 하므로 이미지 상한은
+   300px 으로 잡는다 (300+32+30 = 362 < 369). 상한을 이보다 키우면 내용이
+   본문을 넘겨 Fit 축소에 기대게 되는데, 그 Fit 이 믿을 수 없다는 게 문제의
+   출발점이었다. 슬라이드 안의 px 은 캔버스 px 과 같다. */
+.fit-inner > .tahta-figure {
+  padding: var(--sp-4) 0;
+}
+.fit-inner > .tahta-figure img {
+  width: auto;
+  max-width: 100%;
+  max-height: 300px;
+  object-fit: contain;
+  margin: 0 auto;
+  display: block;
 }

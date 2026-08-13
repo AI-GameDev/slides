@@ -41,6 +41,14 @@
 .diagram-note {
   align-self: center;
 }
+/* 캡션 줄 길이 한도. 테마 기본값 60ch 는 한국어 캡션에 좁아 두 줄로 접히는
+   경우가 많다 (한글은 글자 폭이 ch 의 약 2배라 실질 30자). 88ch 로 올리면
+   본문 폭(858px) 안에 넉넉히 들어가면서 대부분의 캡션이 한 줄로 떨어진다.
+   선택자를 .slidev-layout 아래로 한 단계 더 준 것은 테마 규칙과 특정성이
+   같으면 나중에 로드되는 테마가 이기기 때문이다. */
+.slidev-layout .diagram-note {
+  max-width: 88ch;
+}
 
 /* 3) diagram 스테이지에 올린 <Figure> 의 높이 제한.
    테마는 .diagram-stage .mermaid 에만 max-height 를 걸어두어 래스터 이미지는
